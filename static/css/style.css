@@ -1,0 +1,30 @@
+body {
+    background-color: #f8f9fa;
+}
+
+
+.hero {
+    background-image: url('../images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.card {
+    border: none;
+}
+
+
+.navbar-brand {
+    letter-spacing: 0.5px;
+}
+
+
+footer {
+    margin-top: 50px;
+}

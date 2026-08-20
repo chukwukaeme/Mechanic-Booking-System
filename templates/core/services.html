@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="text-center mb-4">
+    Our Services
+</h2>
+
+
+<div class="row">
+
+    {% for service in services %}
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card h-100 shadow">
+
+            <div class="card-body">
+
+                <h4 class="card-title">
+                    {{ service.service_name }}
+                </h4>
+
+
+                <p class="card-text">
+                    {{ service.description }}
+                </p>
+
+
+                <p>
+                    <strong>Price:</strong>
+                    ₦{{ service.price }}
+                </p>
+
+
+                <p>
+                    <strong>Duration:</strong>
+                    {{ service.duration_days }} day(s)
+                </p>
+
+
+                {% if user.is_authenticated %}
+
+                <a
+                    href="/bookings/create/"
+                    class="btn btn-warning">
+
+                    Book Now
+
+                </a>
+
+                {% else %}
+
+                <a
+                    href="/accounts/login/"
+                    class="btn btn-primary">
+
+                    Login to Book
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="alert alert-info">
+
+        No services are currently available.
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

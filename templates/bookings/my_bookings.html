@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4 text-center">
+    My Bookings
+</h2>
+
+
+{% if bookings %}
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>
+                        Service
+                    </th>
+
+                    <th>
+                        Booking Date
+                    </th>
+
+                    <th>
+                        Estimated Completion
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            {% for booking in bookings %}
+
+                <tr>
+
+                    <td>
+                        {{ booking.service.service_name }}
+                    </td>
+
+                    <td>
+                        {{ booking.booking_date }}
+                    </td>
+
+                    <td>
+                        {{ booking.end_date }}
+                    </td>
+
+                    <td>
+
+                        {% if booking.status == "PENDING" %}
+
+                            <span class="badge bg-warning text-dark">
+                                Pending
+                            </span>
+
+                        {% elif booking.status == "APPROVED" %}
+
+                            <span class="badge bg-primary">
+                                Approved
+                            </span>
+
+                        {% elif booking.status == "COMPLETED" %}
+
+                            <span class="badge bg-success">
+                                Completed
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+{% else %}
+
+<div class="alert alert-info text-center">
+
+    <h4>
+        No Bookings Yet
+    </h4>
+
+
+    <p>
+        You haven't booked any services.
+    </p>
+
+
+    <a
+        href="/bookings/create/"
+        class="btn btn-warning">
+
+        Book Your First Service
+
+    </a>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

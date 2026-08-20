@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="hero mb-5">
+
+    <div class="container">
+
+        <div class="bg-dark bg-opacity-75 text-white p-5 rounded">
+
+            <h1 class="display-4 fw-bold">
+                Professional Auto Care
+            </h1>
+
+            <p class="lead">
+                Book reliable vehicle maintenance
+                and repair services online.
+            </p>
+
+            {% if user.is_authenticated %}
+
+                <a
+                    href="/bookings/create/"
+                    class="btn btn-warning btn-lg">
+
+                    Book a Service
+
+                </a>
+
+            {% else %}
+
+                <a
+                    href="/accounts/register/"
+                    class="btn btn-success btn-lg">
+
+                    Get Started
+
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<h2 class="text-center mb-4">
+    Our Services
+</h2>
+
+
+<div class="row">
+
+    {% for service in services %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card h-100 shadow">
+
+                <div class="card-body">
+
+                    <h4>
+                        {{ service.service_name }}
+                    </h4>
+
+                    <p>
+                        {{ service.description }}
+                    </p>
+
+                    <p>
+                        <strong>
+                            ₦{{ service.price }}
+                        </strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="alert alert-info">
+
+            No services available yet.
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}  
